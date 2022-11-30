@@ -1,0 +1,445 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| deepak             |
+| information_schema |
+| itvedant           |
+| mysql              |
+| performance_schema |
+| project            |
+| sys                |
++--------------------+
+7 rows in set (0.01 sec)
+
+mysql> use deepak;
+Database changed
+
+mysql> desc products;
++-------------------+--------------+------+-----+---------+----------------+
+| Field             | Type         | Null | Key | Default | Extra          |
++-------------------+--------------+------+-----+---------+----------------+
+| id                | int          | NO   | PRI | NULL    | auto_increment |
+| productname       | varchar(255) | NO   |     | NULL    |                |
+| partnumber        | varchar(255) | NO   |     | NULL    |                |
+| label             | varchar(255) | NO   |     | NULL    |                |
+| startinginventory | int          | NO   |     | NULL    |                |
+| inventoryreceived | int          | NO   |     | NULL    |                |
+| inventoryshipped  | int          | NO   |     | NULL    |                |
+| inventoryonhand   | int          | NO   |     | NULL    |                |
+| minimumRequired   | int          | NO   |     | NULL    |                |
++-------------------+--------------+------+-----+---------+----------------+
+9 rows in set (0.02 sec)
+
+mysql> select * from products;
++----+-------------------+------------+-----------------------+-------------------+-------------------+------------------+-----------------+-----------------+
+| id | productname       | partnumber | label                 | startinginventory | inventoryreceived | inventoryshipped | inventoryonhand | minimumRequired |
++----+-------------------+------------+-----------------------+-------------------+-------------------+------------------+-----------------+-----------------+
+|  1 | Dell server       | xp 20000   | Dell server-xp 2000   |            100007 |                35 |               25 |          100017 |              15 |
+|  2 | google chromebook | 1          | google chromebook-1.0 |               100 |                75 |              654 |             479 |              20 |
+|  3 | cisco router      | 10x        | cisco router-10x      |                45 |               143 |               76 |              86 |              88 |
+|  4 | oppo              | A76        | oppo-A76              |                25 |                 0 |                0 |              25 |              10 |
+|  5 | semih             | 37         | semih-37              |                 1 |                12 |                5 |               8 |               5 |
+|  6 | sumsung galaxy    | S22        | sumsung galaxy-S22    |                10 |                45 |              145 |              20 |              50 |
+|  7 | iphone            | 13         | iphone-13             |                74 |                45 |              200 |              50 |              75 |
+|  8 | Hp EliteBook      | w4R30VC    | Hp EliteBook-W4R30VC  |               123 |                56 |              145 |              84 |             125 |
++----+-------------------+------------+-----------------------+-------------------+-------------------+------------------+-----------------+-----------------+
+8 rows in set (0.04 sec)
+
+mysql> desc purchases;
++-----------------+--------------+------+-----+---------+-------+
+| Field           | Type         | Null | Key | Default | Extra |
++-----------------+--------------+------+-----+---------+-------+
+| id              | int          | NO   | PRI | NULL    |       |
+| supplierid      | int          | YES  | MUL | NULL    |       |
+| productid       | int          | YES  | MUL | NULL    |       |
+| number_received | varchar(100) | YES  |     | NULL    |       |
+| purchase_date   | date         | YES  |     | NULL    |       |
++-----------------+--------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> select * from purchases;
++----+------------+-----------+-----------------+---------------+
+| id | supplierid | productid | number_received | purchase_date |
++----+------------+-----------+-----------------+---------------+
+|  1 |          1 |         1 | smith           | 2014-04-16    |
+|  2 |          3 |         4 | gilbert messy   | 2015-05-18    |
+|  3 |          2 |         3 | Andrew          | 2018-07-25    |
+|  4 |          6 |         5 | james           | 2017-08-27    |
+|  5 |          4 |         6 | thomas          | 2016-09-26    |
+|  6 |          5 |         7 | wilson          | 2019-05-12    |
+|  7 |          4 |         8 | maria           | 2021-04-28    |
+|  8 |          5 |         4 | jack            | 2022-07-17    |
++----+------------+-----------+-----------------+---------------+
+8 rows in set (0.01 sec)
+
+mysql> desc orders;
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| id            | int          | NO   | PRI | NULL    |       |
+| Title         | varchar(100) | YES  |     | NULL    |       |
+| first         | varchar(100) | YES  |     | NULL    |       |
+| middle        | varchar(100) | YES  |     | NULL    |       |
+| last          | varchar(100) | YES  |     | NULL    |       |
+| productid     | int          | NO   | MUL | NULL    |       |
+| numbershipped | int          | NO   |     | NULL    |       |
+| orderDate     | date         | YES  |     | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> select * from orders;
++----+------------------------------------+---------+---------+----------+-----------+---------------+------------+
+| id | Title                              | first   | middle  | last     | productid | numbershipped | orderDate  |
++----+------------------------------------+---------+---------+----------+-----------+---------------+------------+
+|  1 | STUDENT DATABASE MANAGEMENT        | sonal   | Rajesh  | bakshi   |         1 |            10 | 2016-04-19 |
+|  2 | INVENTORY MANAGEMENT SYSTEM        | manjit  | prem    | Reddy    |         2 |            50 | 2017-05-16 |
+|  3 | HOSPITAL MANAGEMENT SYSTEM         | pranali | Ramesh  | Bhatt    |         4 |            41 | 2014-06-18 |
+|  4 | RAILWAY SYSTEM DATABASE            | Deepa   | kishan  | Maurya   |         3 |             4 | 2018-07-15 |
+|  5 | BLOOD DONATION DATABASE            | Anjali  | prithvi | basu     |         5 |             2 | 2019-05-13 |
+|  6 | ART GALLERY MANAGEMENT DATABASE    | pinki   | dev     | malhotra |         6 |            29 | 2020-03-14 |
+|  7 | ONLINE RETAIL APPLICATION DATABASE | roshan  | raj     | sharma   |         7 |           140 | 2021-04-13 |
+|  8 | LIBRARY MANAGEMENT SYSTEM          | manavi  | saurabh | dixit    |         8 |           102 | 2022-09-17 |
++----+------------------------------------+---------+---------+----------+-----------+---------------+------------+
+8 rows in set (0.01 sec)
+
+mysql> desc suppliers;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| id       | int          | NO   | PRI | NULL    |       |
+| supplier | varchar(100) | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from suppliers;
++----+----------+
+| id | supplier |
++----+----------+
+|  1 | Abhay    |
+|  2 | Anil     |
+|  3 | mohit    |
+|  4 | Rajesh   |
+|  5 | Rohit    |
+|  6 | priya    |
+|  7 | piyush   |
+|  8 | neha     |
++----+----------+
+8 rows in set (0.01 sec)
+
+
+mysql> select max(startinginventory) from products;
++------------------------+
+| max(startinginventory) |
++------------------------+
+|                 100007 |
++------------------------+
+1 row in set (0.01 sec)
+
+mysql> select min(inventoryshipped) from products;
++-----------------------+
+| min(inventoryshipped) |
++-----------------------+
+|                     0 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from products where id=1;
++----+-------------+------------+---------------------+-------------------+-------------------+------------------+-----------------+-----------------+
+| id | productname | partnumber | label               | startinginventory | inventoryreceived | inventoryshipped | inventoryonhand | minimumRequired |
++----+-------------+------------+---------------------+-------------------+-------------------+------------------+-----------------+-----------------+
+|  1 | Dell server | xp 20000   | Dell server-xp 2000 |            100007 |                35 |               25 |          100017 |              15 |
++----+-------------+------------+---------------------+-------------------+-------------------+------------------+-----------------+-----------------+
+1 row in set (0.01 sec)
+
+mysql> select * from products order by productname asc;
++----+-------------------+------------+-----------------------+-------------------+-------------------+------------------+-----------------+-----------------+
+| id | productname       | partnumber | label                 | startinginventory | inventoryreceived | inventoryshipped | inventoryonhand | minimumRequired |
++----+-------------------+------------+-----------------------+-------------------+-------------------+------------------+-----------------+-----------------+
+|  3 | cisco router      | 10x        | cisco router-10x      |                45 |               143 |               76 |              86 |              88 |
+|  1 | Dell server       | xp 20000   | Dell server-xp 2000   |            100007 |                35 |               25 |          100017 |              15 |
+|  2 | google chromebook | 1          | google chromebook-1.0 |               100 |                75 |              654 |             479 |              20 |
+|  8 | Hp EliteBook      | w4R30VC    | Hp EliteBook-W4R30VC  |               123 |                56 |              145 |              84 |             125 |
+|  7 | iphone            | 13         | iphone-13             |                74 |                45 |              200 |              50 |              75 |
+|  4 | oppo              | A76        | oppo-A76              |                25 |                 0 |                0 |              25 |              10 |
+|  5 | semih             | 37         | semih-37              |                 1 |                12 |                5 |               8 |               5 |
+|  6 | sumsung galaxy    | S22        | sumsung galaxy-S22    |                10 |                45 |              145 |              20 |              50 |
++----+-------------------+------------+-----------------------+-------------------+-------------------+------------------+-----------------+-----------------+
+8 rows in set (0.00 sec)
+
+mysql> select productname,partnumber,startinginventory,inventoryshipped from products;
++-------------------+------------+-------------------+------------------+
+| productname       | partnumber | startinginventory | inventoryshipped |
++-------------------+------------+-------------------+------------------+
+| Dell server       | xp 20000   |            100007 |               25 |
+| google chromebook | 1          |               100 |              654 |
+| cisco router      | 10x        |                45 |               76 |
+| oppo              | A76        |                25 |                0 |
+| semih             | 37         |                 1 |                5 |
+| sumsung galaxy    | S22        |                10 |              145 |
+| iphone            | 13         |                74 |              200 |
+| Hp EliteBook      | w4R30VC    |               123 |              145 |
++-------------------+------------+-------------------+------------------+
+8 rows in set (0.00 sec)
+
+mysql> select * from products where startinginventory between 45 and 100;
++----+-------------------+------------+-----------------------+-------------------+-------------------+------------------+-----------------+-----------------+
+| id | productname       | partnumber | label                 | startinginventory | inventoryreceived | inventoryshipped | inventoryonhand | minimumRequired |
++----+-------------------+------------+-----------------------+-------------------+-------------------+------------------+-----------------+-----------------+
+|  2 | google chromebook | 1          | google chromebook-1.0 |               100 |                75 |              654 |             479 |              20 |
+|  3 | cisco router      | 10x        | cisco router-10x      |                45 |               143 |               76 |              86 |              88 |
+|  7 | iphone            | 13         | iphone-13             |                74 |                45 |              200 |              50 |              75 |
++----+-------------------+------------+-----------------------+-------------------+-------------------+------------------+-----------------+-----------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from products;
++----+-------------------+------------+-----------------------+-------------------+-------------------+------------------+-----------------+-----------------+
+| id | productname       | partnumber | label                 | startinginventory | inventoryreceived | inventoryshipped | inventoryonhand | minimumRequired |
++----+-------------------+------------+-----------------------+-------------------+-------------------+------------------+-----------------+-----------------+
+|  1 | Dell server       | xp 20000   | Dell server-xp 2000   |            100007 |                35 |               25 |          100017 |              15 |
+|  2 | google chromebook | 1          | google chromebook-1.0 |               100 |                75 |              654 |             479 |              20 |
+|  3 | cisco router      | 10x        | cisco router-10x      |                45 |               143 |               76 |              86 |              88 |
+|  4 | oppo              | A76        | oppo-A76              |                25 |                 0 |                0 |              25 |              10 |
+|  5 | semih             | 37         | semih-37              |                 1 |                12 |                5 |               8 |               5 |
+|  6 | sumsung galaxy    | S22        | sumsung galaxy-S22    |                10 |                45 |              145 |              20 |              50 |
+|  7 | iphone            | 13         | iphone-13             |                74 |                45 |              200 |              50 |              75 |
+|  8 | Hp EliteBook      | w4R30VC    | Hp EliteBook-W4R30VC  |               123 |                56 |              145 |              84 |             125 |
++----+-------------------+------------+-----------------------+-------------------+-------------------+------------------+-----------------+-----------------+
+8 rows in set (0.00 sec)
+
+mysql> select * from purchases;
++----+------------+-----------+-----------------+---------------+
+| id | supplierid | productid | number_received | purchase_date |
++----+------------+-----------+-----------------+---------------+
+|  1 |          1 |         1 | smith           | 2014-04-16    |
+|  2 |          3 |         4 | gilbert messy   | 2015-05-18    |
+|  3 |          2 |         3 | Andrew          | 2018-07-25    |
+|  4 |          6 |         5 | james           | 2017-08-27    |
+|  5 |          4 |         6 | thomas          | 2016-09-26    |
+|  6 |          5 |         7 | wilson          | 2019-05-12    |
+|  7 |          4 |         8 | maria           | 2021-04-28    |
+|  8 |          5 |         4 | jack            | 2022-07-17    |
++----+------------+-----------+-----------------+---------------+
+8 rows in set (0.00 sec)
+
+mysql> select products.id,products.productname,products.startinginventory,purchases.id,purchases.number_received,purchases.purchase_date from purchases
+    -> inner join products
+    -> on purchases.productid=products.id;
++----+----------------+-------------------+----+-----------------+---------------+
+| id | productname    | startinginventory | id | number_received | purchase_date |
++----+----------------+-------------------+----+-----------------+---------------+
+|  1 | Dell server    |            100007 |  1 | smith           | 2014-04-16    |
+|  4 | oppo           |                25 |  2 | gilbert messy   | 2015-05-18    |
+|  3 | cisco router   |                45 |  3 | Andrew          | 2018-07-25    |
+|  5 | semih          |                 1 |  4 | james           | 2017-08-27    |
+|  6 | sumsung galaxy |                10 |  5 | thomas          | 2016-09-26    |
+|  7 | iphone         |                74 |  6 | wilson          | 2019-05-12    |
+|  8 | Hp EliteBook   |               123 |  7 | maria           | 2021-04-28    |
+|  4 | oppo           |                25 |  8 | jack            | 2022-07-17    |
++----+----------------+-------------------+----+-----------------+---------------+
+8 rows in set (0.00 sec)
+
+mysql> select products.id,products.productname,products.startinginventory,purchases.id,purchases.number_received,purchases.purchase_date from purchases
+    -> inner join products
+    -> on purchases.productid=products.id
+    -> order by number_received asc;
++----+----------------+-------------------+----+-----------------+---------------+
+| id | productname    | startinginventory | id | number_received | purchase_date |
++----+----------------+-------------------+----+-----------------+---------------+
+|  3 | cisco router   |                45 |  3 | Andrew          | 2018-07-25    |
+|  4 | oppo           |                25 |  2 | gilbert messy   | 2015-05-18    |
+|  4 | oppo           |                25 |  8 | jack            | 2022-07-17    |
+|  5 | semih          |                 1 |  4 | james           | 2017-08-27    |
+|  8 | Hp EliteBook   |               123 |  7 | maria           | 2021-04-28    |
+|  1 | Dell server    |            100007 |  1 | smith           | 2014-04-16    |
+|  6 | sumsung galaxy |                10 |  5 | thomas          | 2016-09-26    |
+|  7 | iphone         |                74 |  6 | wilson          | 2019-05-12    |
++----+----------------+-------------------+----+-----------------+---------------+
+8 rows in set (0.00 sec)
+
+
+mysql> select * from orders;
++----+------------------------------------+---------+---------+----------+-----------+---------------+------------+
+| id | Title                              | first   | middle  | last     | productid | numbershipped | orderDate  |
++----+------------------------------------+---------+---------+----------+-----------+---------------+------------+
+|  1 | STUDENT DATABASE MANAGEMENT        | sonal   | Rajesh  | bakshi   |         1 |            10 | 2016-04-19 |
+|  2 | INVENTORY MANAGEMENT SYSTEM        | manjit  | prem    | Reddy    |         2 |            50 | 2017-05-16 |
+|  3 | HOSPITAL MANAGEMENT SYSTEM         | pranali | Ramesh  | Bhatt    |         4 |            41 | 2014-06-18 |
+|  4 | RAILWAY SYSTEM DATABASE            | Deepa   | kishan  | Maurya   |         3 |             4 | 2018-07-15 |
+|  5 | BLOOD DONATION DATABASE            | Anjali  | prithvi | basu     |         5 |             2 | 2019-05-13 |
+|  6 | ART GALLERY MANAGEMENT DATABASE    | pinki   | dev     | malhotra |         6 |            29 | 2020-03-14 |
+|  7 | ONLINE RETAIL APPLICATION DATABASE | roshan  | raj     | sharma   |         7 |           140 | 2021-04-13 |
+|  8 | LIBRARY MANAGEMENT SYSTEM          | manavi  | saurabh | dixit    |         8 |           102 | 2022-09-17 |
++----+------------------------------------+---------+---------+----------+-----------+---------------+------------+
+8 rows in set (0.00 sec)
+
+mysql> select products.id,products.productname,products.startinginventory,orders.id,orders.first,orders.last,orders.numbershipped from orders
+    -> inner join products
+    -> on orders.productid=products.id;
++----+-------------------+-------------------+----+---------+----------+---------------+
+| id | productname       | startinginventory | id | first   | last     | numbershipped |
++----+-------------------+-------------------+----+---------+----------+---------------+
+|  1 | Dell server       |            100007 |  1 | sonal   | bakshi   |            10 |
+|  2 | google chromebook |               100 |  2 | manjit  | Reddy    |            50 |
+|  4 | oppo              |                25 |  3 | pranali | Bhatt    |            41 |
+|  3 | cisco router      |                45 |  4 | Deepa   | Maurya   |             4 |
+|  5 | semih             |                 1 |  5 | Anjali  | basu     |             2 |
+|  6 | sumsung galaxy    |                10 |  6 | pinki   | malhotra |            29 |
+|  7 | iphone            |                74 |  7 | roshan  | sharma   |           140 |
+|  8 | Hp EliteBook      |               123 |  8 | manavi  | dixit    |           102 |
++----+-------------------+-------------------+----+---------+----------+---------------+
+8 rows in set (0.00 sec)
+
+mysql> select products.id,products.productname,products.startinginventory,orders.id,orders.first,orders.last,orders.numbershipped,orders.orderDate from orde
+rs inner join products
+    -> on orders.productid=products.id;
++----+-------------------+-------------------+----+---------+----------+---------------+------------+
+| id | productname       | startinginventory | id | first   | last     | numbershipped | orderDate  |
++----+-------------------+-------------------+----+---------+----------+---------------+------------+
+|  1 | Dell server       |            100007 |  1 | sonal   | bakshi   |            10 | 2016-04-19 |
+|  2 | google chromebook |               100 |  2 | manjit  | Reddy    |            50 | 2017-05-16 |
+|  4 | oppo              |                25 |  3 | pranali | Bhatt    |            41 | 2014-06-18 |
+|  3 | cisco router      |                45 |  4 | Deepa   | Maurya   |             4 | 2018-07-15 |
+|  5 | semih             |                 1 |  5 | Anjali  | basu     |             2 | 2019-05-13 |
+|  6 | sumsung galaxy    |                10 |  6 | pinki   | malhotra |            29 | 2020-03-14 |
+|  7 | iphone            |                74 |  7 | roshan  | sharma   |           140 | 2021-04-13 |
+|  8 | Hp EliteBook      |               123 |  8 | manavi  | dixit    |           102 | 2022-09-17 |
++----+-------------------+-------------------+----+---------+----------+---------------+------------+
+8 rows in set (0.00 sec)
+
+mysql> desc suppliers;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| id       | int          | NO   | PRI | NULL    |       |
+| supplier | varchar(100) | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from suppliers;
++----+----------+
+| id | supplier |
++----+----------+
+|  1 | Abhay    |
+|  2 | Anil     |
+|  3 | mohit    |
+|  4 | Rajesh   |
+|  5 | Rohit    |
+|  6 | priya    |
+|  7 | piyush   |
+|  8 | neha     |
++----+----------+
+8 rows in set (0.00 sec)
+
+mysql> desc purchases;
++-----------------+--------------+------+-----+---------+-------+
+| Field           | Type         | Null | Key | Default | Extra |
++-----------------+--------------+------+-----+---------+-------+
+| id              | int          | NO   | PRI | NULL    |       |
+| supplierid      | int          | YES  | MUL | NULL    |       |
+| productid       | int          | YES  | MUL | NULL    |       |
+| number_received | varchar(100) | YES  |     | NULL    |       |
+| purchase_date   | date         | YES  |     | NULL    |       |
++-----------------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from purchases;
++----+------------+-----------+-----------------+---------------+
+| id | supplierid | productid | number_received | purchase_date |
++----+------------+-----------+-----------------+---------------+
+|  1 |          1 |         1 | smith           | 2014-04-16    |
+|  2 |          3 |         4 | gilbert messy   | 2015-05-18    |
+|  3 |          2 |         3 | Andrew          | 2018-07-25    |
+|  4 |          6 |         5 | james           | 2017-08-27    |
+|  5 |          4 |         6 | thomas          | 2016-09-26    |
+|  6 |          5 |         7 | wilson          | 2019-05-12    |
+|  7 |          4 |         8 | maria           | 2021-04-28    |
+|  8 |          5 |         4 | jack            | 2022-07-17    |
++----+------------+-----------+-----------------+---------------+
+8 rows in set (0.00 sec)
+
+mysql> select suppliers.id,suppliers.supplier,purchases.supplierid,purchases.number_received from purchases
+    -> inner join suppliers
+    -> on purchases.supplierid=suppliers.id;
++----+----------+------------+-----------------+
+| id | supplier | supplierid | number_received |
++----+----------+------------+-----------------+
+|  1 | Abhay    |          1 | smith           |
+|  3 | mohit    |          3 | gilbert messy   |
+|  2 | Anil     |          2 | Andrew          |
+|  6 | priya    |          6 | james           |
+|  4 | Rajesh   |          4 | thomas          |
+|  5 | Rohit    |          5 | wilson          |
+|  4 | Rajesh   |          4 | maria           |
+|  5 | Rohit    |          5 | jack            |
++----+----------+------------+-----------------+
+8 rows in set (0.00 sec)
+
+mysql> select suppliers.id,suppliers.supplier,purchases.supplierid,purchases.number_received from purchases
+    -> right join suppliers
+    -> on purchases.supplierid=suppliers.id
+    -> order by supplier asc;
++----+----------+------------+-----------------+
+| id | supplier | supplierid | number_received |
++----+----------+------------+-----------------+
+|  1 | Abhay    |          1 | smith           |
+|  2 | Anil     |          2 | Andrew          |
+|  3 | mohit    |          3 | gilbert messy   |
+|  8 | neha     |       NULL | NULL            |
+|  7 | piyush   |       NULL | NULL            |
+|  6 | priya    |          6 | james           |
+|  4 | Rajesh   |          4 | thomas          |
+|  4 | Rajesh   |          4 | maria           |
+|  5 | Rohit    |          5 | wilson          |
+|  5 | Rohit    |          5 | jack            |
++----+----------+------------+-----------------+
+10 rows in set (0.00 sec)
+
+mysql> select suppliers.id,suppliers.supplier,purchases.supplierid,purchases.number_received from purchases
+    -> left join suppliers
+    -> on purchases.supplierid=suppliers.id
+    -> order by number_received desc;
++------+----------+------------+-----------------+
+| id   | supplier | supplierid | number_received |
++------+----------+------------+-----------------+
+|    5 | Rohit    |          5 | wilson          |
+|    4 | Rajesh   |          4 | thomas          |
+|    1 | Abhay    |          1 | smith           |
+|    4 | Rajesh   |          4 | maria           |
+|    6 | priya    |          6 | james           |
+|    5 | Rohit    |          5 | jack            |
+|    3 | mohit    |          3 | gilbert messy   |
+|    2 | Anil     |          2 | Andrew          |
++------+----------+------------+-----------------+
+8 rows in set (0.00 sec)
+
+mysql> select * from products;
++----+-------------------+------------+-----------------------+-------------------+-------------------+------------------+-----------------+-----------------+
+| id | productname       | partnumber | label                 | startinginventory | inventoryreceived | inventoryshipped | inventoryonhand | minimumRequired |
++----+-------------------+------------+-----------------------+-------------------+-------------------+------------------+-----------------+-----------------+
+|  1 | Dell server       | xp 20000   | Dell server-xp 2000   |            100007 |                35 |               25 |          100017 |              15 |
+|  2 | google chromebook | 1          | google chromebook-1.0 |               100 |                75 |              654 |             479 |              20 |
+|  3 | cisco router      | 10x        | cisco router-10x      |                45 |               143 |               76 |              86 |              88 |
+|  4 | oppo              | A76        | oppo-A76              |                25 |                 0 |                0 |              25 |              10 |
+|  5 | semih             | 37         | semih-37              |                 1 |                12 |                5 |               8 |               5 |
+|  6 | sumsung galaxy    | S22        | sumsung galaxy-S22    |                10 |                45 |              145 |              20 |              50 |
+|  7 | iphone            | 13         | iphone-13             |                74 |                45 |              200 |              50 |              75 |
+|  8 | Hp EliteBook      | w4R30VC    | Hp EliteBook-W4R30VC  |               123 |                56 |              145 |              84 |             125 |
++----+-------------------+------------+-----------------------+-------------------+-------------------+------------------+-----------------+-----------------+
+8 rows in set (0.00 sec)
+
+mysql> select sum(startinginventory) from products;
++------------------------+
+| sum(startinginventory) |
++------------------------+
+|                 100385 |
++------------------------+
+1 row in set (0.01 sec)
+
+mysql> select count(inventoryshipped) from products;
++-------------------------+
+| count(inventoryshipped) |
++-------------------------+
+|                       8 |
++-------------------------+
+1 row in set (0.01 sec)
