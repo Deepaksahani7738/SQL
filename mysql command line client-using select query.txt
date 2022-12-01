@@ -6,7 +6,7 @@ mysql> create table students
     -> course varchar(150) not null,
     -> unique key(name),
     -> primary key students(id));
-ERROR 1050 (42S01): Table 'students' already exists
+Query OK, 0 rows affected (0.06 sec)
 mysql> desc students;
 +-------+--------------+------+-----+---------+----------------+
 | Field | Type         | Null | Key | Default | Extra          |
