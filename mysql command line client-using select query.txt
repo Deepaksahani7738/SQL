@@ -17,9 +17,6 @@ mysql> desc students;
 +-------+--------------+------+-----+---------+----------------+
 3 rows in set (0.00 sec)
 
-mysql> drop table students;
-Query OK, 0 rows affected (0.06 sec)
-
 mysql> create table students
     -> (id int not null auto_increment,
     -> name varchar(150) not null,
