@@ -1,0 +1,404 @@
+mysql> create table students
+    -> (id int not null auto_increment,
+    -> name varchar(150) not null,
+    -> mobile_no int not null,
+    -> city varchar(150) not null,
+    -> course varchar(150) not null,
+    -> unique key(name),
+    -> primary key students(id));
+ERROR 1050 (42S01): Table 'students' already exists
+mysql> desc students;
++-------+--------------+------+-----+---------+----------------+
+| Field | Type         | Null | Key | Default | Extra          |
++-------+--------------+------+-----+---------+----------------+
+| id    | int          | NO   | PRI | NULL    | auto_increment |
+| ename | varchar(100) | NO   |     | NULL    |                |
+| city  | varchar(100) | NO   |     | NULL    |                |
++-------+--------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> drop table students;
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> create table students
+    -> (id int not null auto_increment,
+    -> name varchar(150) not null,
+    -> mobile_no int not null,
+    -> city varchar(150) not null,
+    -> course varchar(150) not null,
+    -> unique key(name),
+    -> primary key students(id));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> select * from students;
+Empty set (0.00 sec)
+
+mysql> desc students;
++-----------+--------------+------+-----+---------+----------------+
+| Field     | Type         | Null | Key | Default | Extra          |
++-----------+--------------+------+-----+---------+----------------+
+| id        | int          | NO   | PRI | NULL    | auto_increment |
+| name      | varchar(150) | NO   | UNI | NULL    |                |
+| mobile_no | int          | NO   |     | NULL    |                |
+| city      | varchar(150) | NO   |     | NULL    |                |
+| course    | varchar(150) | NO   |     | NULL    |                |
++-----------+--------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> insert into students values
+    -> (1,'raj','774588','mumbai','python developer'),
+    -> (2,'karan','887752','pune','php'),
+    -> (3,'roshan','997855','banglore','java developer'),
+    -> (4,'priyanka','667845','nashik','c++'),
+    -> (5,'suresh','758966','delhi','web development'),
+    -> (6,'manav','786698','hydrabad','backend development'),
+    -> (7,'trisha','998595','chennnai','full stack development'),
+    -> (8,'kriti','778895','navi mumbai','mean developer'),
+    -> (9,'priya','889558','mumbai','mear developer');
+Query OK, 9 rows affected (0.01 sec)
+Records: 9  Duplicates: 0  Warnings: 0
+
+mysql> select * from students;
++----+----------+-----------+-------------+------------------------+
+| id | name     | mobile_no | city        | course                 |
++----+----------+-----------+-------------+------------------------+
+|  1 | raj      |    774588 | mumbai      | python developer       |
+|  2 | karan    |    887752 | pune        | php                    |
+|  3 | roshan   |    997855 | banglore    | java developer         |
+|  4 | priyanka |    667845 | nashik      | c++                    |
+|  5 | suresh   |    758966 | delhi       | web development        |
+|  6 | manav    |    786698 | hydrabad    | backend development    |
+|  7 | trisha   |    998595 | chennnai    | full stack development |
+|  8 | kriti    |    778895 | navi mumbai | mean developer         |
+|  9 | priya    |    889558 | mumbai      | mear developer         |
++----+----------+-----------+-------------+------------------------+
+9 rows in set (0.00 sec)
+
+mysql> alter table students rename column id to sid;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from students;
++-----+----------+-----------+-------------+------------------------+
+| sid | name     | mobile_no | city        | course                 |
++-----+----------+-----------+-------------+------------------------+
+|   1 | raj      |    774588 | mumbai      | python developer       |
+|   2 | karan    |    887752 | pune        | php                    |
+|   3 | roshan   |    997855 | banglore    | java developer         |
+|   4 | priyanka |    667845 | nashik      | c++                    |
+|   5 | suresh   |    758966 | delhi       | web development        |
+|   6 | manav    |    786698 | hydrabad    | backend development    |
+|   7 | trisha   |    998595 | chennnai    | full stack development |
+|   8 | kriti    |    778895 | navi mumbai | mean developer         |
+|   9 | priya    |    889558 | mumbai      | mear developer         |
++-----+----------+-----------+-------------+------------------------+
+9 rows in set (0.00 sec)
+
+mysql> alter table students add fees int not null;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from students;
++-----+----------+-----------+-------------+------------------------+------+
+| sid | name     | mobile_no | city        | course                 | fees |
++-----+----------+-----------+-------------+------------------------+------+
+|   1 | raj      |    774588 | mumbai      | python developer       |    0 |
+|   2 | karan    |    887752 | pune        | php                    |    0 |
+|   3 | roshan   |    997855 | banglore    | java developer         |    0 |
+|   4 | priyanka |    667845 | nashik      | c++                    |    0 |
+|   5 | suresh   |    758966 | delhi       | web development        |    0 |
+|   6 | manav    |    786698 | hydrabad    | backend development    |    0 |
+|   7 | trisha   |    998595 | chennnai    | full stack development |    0 |
+|   8 | kriti    |    778895 | navi mumbai | mean developer         |    0 |
+|   9 | priya    |    889558 | mumbai      | mear developer         |    0 |
++-----+----------+-----------+-------------+------------------------+------+
+9 rows in set (0.00 sec)
+
+mysql> update students set fees=25000 where sid=1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update students set fees=7000 where sid=2;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update students set fees=30000 where sid=3;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update students set fees=35000 where sid=4;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update students set fees=25000 where sid=5;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update students set fees=36000 where sid=6;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update students set fees=50000 where sid=7;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update students set fees=28000 where sid=8;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update students set fees=27000 where sid=9;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from students;
++-----+----------+-----------+-------------+------------------------+-------+
+| sid | name     | mobile_no | city        | course                 | fees  |
++-----+----------+-----------+-------------+------------------------+-------+
+|   1 | raj      |    774588 | mumbai      | python developer       | 25000 |
+|   2 | karan    |    887752 | pune        | php                    |  7000 |
+|   3 | roshan   |    997855 | banglore    | java developer         | 30000 |
+|   4 | priyanka |    667845 | nashik      | c++                    | 35000 |
+|   5 | suresh   |    758966 | delhi       | web development        | 25000 |
+|   6 | manav    |    786698 | hydrabad    | backend development    | 36000 |
+|   7 | trisha   |    998595 | chennnai    | full stack development | 50000 |
+|   8 | kriti    |    778895 | navi mumbai | mean developer         | 28000 |
+|   9 | priya    |    889558 | mumbai      | mear developer         | 27000 |
++-----+----------+-----------+-------------+------------------------+-------+
+9 rows in set (0.00 sec)
+
+mysql> update students set fees=10000 where sid=2;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from students where sid=1;
++-----+------+-----------+--------+------------------+-------+
+| sid | name | mobile_no | city   | course           | fees  |
++-----+------+-----------+--------+------------------+-------+
+|   1 | raj  |    774588 | mumbai | python developer | 25000 |
++-----+------+-----------+--------+------------------+-------+
+1 row in set (0.00 sec)
+
+mysql> select sid,name,course,fees from students;
++-----+----------+------------------------+-------+
+| sid | name     | course                 | fees  |
++-----+----------+------------------------+-------+
+|   1 | raj      | python developer       | 25000 |
+|   2 | karan    | php                    | 10000 |
+|   3 | roshan   | java developer         | 30000 |
+|   4 | priyanka | c++                    | 35000 |
+|   5 | suresh   | web development        | 25000 |
+|   6 | manav    | backend development    | 36000 |
+|   7 | trisha   | full stack development | 50000 |
+|   8 | kriti    | mean developer         | 28000 |
+|   9 | priya    | mear developer         | 27000 |
++-----+----------+------------------------+-------+
+9 rows in set (0.00 sec)
+
+mysql> select sid,name,course,fees from students where sid=6;
++-----+-------+---------------------+-------+
+| sid | name  | course              | fees  |
++-----+-------+---------------------+-------+
+|   6 | manav | backend development | 36000 |
++-----+-------+---------------------+-------+
+1 row in set (0.00 sec)
+
+mysql> select max(fees) from students;
++-----------+
+| max(fees) |
++-----------+
+|     50000 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select min(fees) from students;
++-----------+
+| min(fees) |
++-----------+
+|     10000 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select * from students order by fees asc;
++-----+----------+-----------+-------------+------------------------+-------+
+| sid | name     | mobile_no | city        | course                 | fees  |
++-----+----------+-----------+-------------+------------------------+-------+
+|   2 | karan    |    887752 | pune        | php                    | 10000 |
+|   1 | raj      |    774588 | mumbai      | python developer       | 25000 |
+|   5 | suresh   |    758966 | delhi       | web development        | 25000 |
+|   9 | priya    |    889558 | mumbai      | mear developer         | 27000 |
+|   8 | kriti    |    778895 | navi mumbai | mean developer         | 28000 |
+|   3 | roshan   |    997855 | banglore    | java developer         | 30000 |
+|   4 | priyanka |    667845 | nashik      | c++                    | 35000 |
+|   6 | manav    |    786698 | hydrabad    | backend development    | 36000 |
+|   7 | trisha   |    998595 | chennnai    | full stack development | 50000 |
++-----+----------+-----------+-------------+------------------------+-------+
+9 rows in set (0.00 sec)
+
+mysql> delete from students where sid=7;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from students;
++-----+----------+-----------+-------------+---------------------+-------+
+| sid | name     | mobile_no | city        | course              | fees  |
++-----+----------+-----------+-------------+---------------------+-------+
+|   1 | raj      |    774588 | mumbai      | python developer    | 25000 |
+|   2 | karan    |    887752 | pune        | php                 | 10000 |
+|   3 | roshan   |    997855 | banglore    | java developer      | 30000 |
+|   4 | priyanka |    667845 | nashik      | c++                 | 35000 |
+|   5 | suresh   |    758966 | delhi       | web development     | 25000 |
+|   6 | manav    |    786698 | hydrabad    | backend development | 36000 |
+|   8 | kriti    |    778895 | navi mumbai | mean developer      | 28000 |
+|   9 | priya    |    889558 | mumbai      | mear developer      | 27000 |
++-----+----------+-----------+-------------+---------------------+-------+
+8 rows in set (0.00 sec)
+
+mysql> select distinct course from students;
++---------------------+
+| course              |
++---------------------+
+| python developer    |
+| php                 |
+| java developer      |
+| c++                 |
+| web development     |
+| backend development |
+| mean developer      |
+| mear developer      |
++---------------------+
+8 rows in set (0.00 sec)
+
+mysql> select sid,name city,course from students where fees>=25000 limit 4;
++-----+----------+------------------+
+| sid | city     | course           |
++-----+----------+------------------+
+|   1 | raj      | python developer |
+|   3 | roshan   | java developer   |
+|   4 | priyanka | c++              |
+|   5 | suresh   | web development  |
++-----+----------+------------------+
+4 rows in set (0.01 sec)
+
+mysql> select * from students where fees<=10000;
++-----+-------+-----------+------+--------+-------+
+| sid | name  | mobile_no | city | course | fees  |
++-----+-------+-----------+------+--------+-------+
+|   2 | karan |    887752 | pune | php    | 10000 |
++-----+-------+-----------+------+--------+-------+
+1 row in set (0.00 sec)
+
+mysql> select sum(sid) from students;
++----------+
+| sum(sid) |
++----------+
+|       38 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select * from students limit 5;
++-----+----------+-----------+----------+------------------+-------+
+| sid | name     | mobile_no | city     | course           | fees  |
++-----+----------+-----------+----------+------------------+-------+
+|   1 | raj      |    774588 | mumbai   | python developer | 25000 |
+|   2 | karan    |    887752 | pune     | php              | 10000 |
+|   3 | roshan   |    997855 | banglore | java developer   | 30000 |
+|   4 | priyanka |    667845 | nashik   | c++              | 35000 |
+|   5 | suresh   |    758966 | delhi    | web development  | 25000 |
++-----+----------+-----------+----------+------------------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from students where name like('r%');
++-----+--------+-----------+----------+------------------+-------+
+| sid | name   | mobile_no | city     | course           | fees  |
++-----+--------+-----------+----------+------------------+-------+
+|   1 | raj    |    774588 | mumbai   | python developer | 25000 |
+|   3 | roshan |    997855 | banglore | java developer   | 30000 |
++-----+--------+-----------+----------+------------------+-------+
+2 rows in set (0.01 sec)
+
+mysql> select * from students where name like('r%j');
++-----+------+-----------+--------+------------------+-------+
+| sid | name | mobile_no | city   | course           | fees  |
++-----+------+-----------+--------+------------------+-------+
+|   1 | raj  |    774588 | mumbai | python developer | 25000 |
++-----+------+-----------+--------+------------------+-------+
+1 row in set (0.00 sec)
+
+mysql> select * from students where name like('%n');
++-----+--------+-----------+----------+----------------+-------+
+| sid | name   | mobile_no | city     | course         | fees  |
++-----+--------+-----------+----------+----------------+-------+
+|   2 | karan  |    887752 | pune     | php            | 10000 |
+|   3 | roshan |    997855 | banglore | java developer | 30000 |
++-----+--------+-----------+----------+----------------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select upper(name) from students;
++-------------+
+| upper(name) |
++-------------+
+| KARAN       |
+| KRITI       |
+| MANAV       |
+| PRIYA       |
+| PRIYANKA    |
+| RAJ         |
+| ROSHAN      |
+| SURESH      |
++-------------+
+8 rows in set (0.01 sec)
+
+mysql> select lcase(course) from students;
++---------------------+
+| lcase(course)       |
++---------------------+
+| python developer    |
+| php                 |
+| java developer      |
+| c++                 |
+| web development     |
+| backend development |
+| mean developer      |
+| mear developer      |
++---------------------+
+8 rows in set (0.00 sec)
+
+mysql> select char_length(city) as lengthofcity from students;
++--------------+
+| lengthofcity |
++--------------+
+|            6 |
+|            4 |
+|            8 |
+|            6 |
+|            5 |
+|            8 |
+|           11 |
+|            6 |
++--------------+
+8 rows in set (0.00 sec)
+
+mysql> create table view as select * from students;
+Query OK, 8 rows affected (0.03 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> select * from view;
++-----+----------+-----------+-------------+---------------------+-------+
+| sid | name     | mobile_no | city        | course              | fees  |
++-----+----------+-----------+-------------+---------------------+-------+
+|   1 | raj      |    774588 | mumbai      | python developer    | 25000 |
+|   2 | karan    |    887752 | pune        | php                 | 10000 |
+|   3 | roshan   |    997855 | banglore    | java developer      | 30000 |
+|   4 | priyanka |    667845 | nashik      | c++                 | 35000 |
+|   5 | suresh   |    758966 | delhi       | web development     | 25000 |
+|   6 | manav    |    786698 | hydrabad    | backend development | 36000 |
+|   8 | kriti    |    778895 | navi mumbai | mean developer      | 28000 |
+|   9 | priya    |    889558 | mumbai      | mear developer      | 27000 |
++-----+----------+-----------+-------------+---------------------+-------+
+8 rows in set (0.00 sec)
+
+mysql> truncate table students;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> drop table students;
+Query OK, 0 rows affected (0.02 sec)
+
