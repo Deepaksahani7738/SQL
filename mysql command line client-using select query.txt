@@ -51,7 +51,7 @@ mysql> insert into students values
     -> (6,'manav','786698','hydrabad','backend development'),
     -> (7,'trisha','998595','chennnai','full stack development'),
     -> (8,'kriti','778895','navi mumbai','mean developer'),
-    -> (9,'priya','889558','mumbai','mear developer');
+    -> (9,'priya','889558','mumbai','mern developer');
 Query OK, 9 rows affected (0.01 sec)
 Records: 9  Duplicates: 0  Warnings: 0
 
@@ -67,7 +67,7 @@ mysql> select * from students;
 |  6 | manav    |    786698 | hydrabad    | backend development    |
 |  7 | trisha   |    998595 | chennnai    | full stack development |
 |  8 | kriti    |    778895 | navi mumbai | mean developer         |
-|  9 | priya    |    889558 | mumbai      | mear developer         |
+|  9 | priya    |    889558 | mumbai      | mern developer         |
 +----+----------+-----------+-------------+------------------------+
 9 rows in set (0.00 sec)
 
@@ -87,7 +87,7 @@ mysql> select * from students;
 |   6 | manav    |    786698 | hydrabad    | backend development    |
 |   7 | trisha   |    998595 | chennnai    | full stack development |
 |   8 | kriti    |    778895 | navi mumbai | mean developer         |
-|   9 | priya    |    889558 | mumbai      | mear developer         |
+|   9 | priya    |    889558 | mumbai      | mern developer         |
 +-----+----------+-----------+-------------+------------------------+
 9 rows in set (0.00 sec)
 
@@ -107,7 +107,7 @@ mysql> select * from students;
 |   6 | manav    |    786698 | hydrabad    | backend development    |    0 |
 |   7 | trisha   |    998595 | chennnai    | full stack development |    0 |
 |   8 | kriti    |    778895 | navi mumbai | mean developer         |    0 |
-|   9 | priya    |    889558 | mumbai      | mear developer         |    0 |
+|   9 | priya    |    889558 | mumbai      | mern developer         |    0 |
 +-----+----------+-----------+-------------+------------------------+------+
 9 rows in set (0.00 sec)
 
@@ -159,7 +159,7 @@ mysql> select * from students;
 |   6 | manav    |    786698 | hydrabad    | backend development    | 36000 |
 |   7 | trisha   |    998595 | chennnai    | full stack development | 50000 |
 |   8 | kriti    |    778895 | navi mumbai | mean developer         | 28000 |
-|   9 | priya    |    889558 | mumbai      | mear developer         | 27000 |
+|   9 | priya    |    889558 | mumbai      | mern developer         | 27000 |
 +-----+----------+-----------+-------------+------------------------+-------+
 9 rows in set (0.00 sec)
 
@@ -187,7 +187,7 @@ mysql> select sid,name,course,fees from students;
 |   6 | manav    | backend development    | 36000 |
 |   7 | trisha   | full stack development | 50000 |
 |   8 | kriti    | mean developer         | 28000 |
-|   9 | priya    | mear developer         | 27000 |
+|   9 | priya    | mern developer         | 27000 |
 +-----+----------+------------------------+-------+
 9 rows in set (0.00 sec)
 
@@ -222,7 +222,7 @@ mysql> select * from students order by fees asc;
 |   2 | karan    |    887752 | pune        | php                    | 10000 |
 |   1 | raj      |    774588 | mumbai      | python developer       | 25000 |
 |   5 | suresh   |    758966 | delhi       | web development        | 25000 |
-|   9 | priya    |    889558 | mumbai      | mear developer         | 27000 |
+|   9 | priya    |    889558 | mumbai      | mern developer         | 27000 |
 |   8 | kriti    |    778895 | navi mumbai | mean developer         | 28000 |
 |   3 | roshan   |    997855 | banglore    | java developer         | 30000 |
 |   4 | priyanka |    667845 | nashik      | c++                    | 35000 |
@@ -245,7 +245,7 @@ mysql> select * from students;
 |   5 | suresh   |    758966 | delhi       | web development     | 25000 |
 |   6 | manav    |    786698 | hydrabad    | backend development | 36000 |
 |   8 | kriti    |    778895 | navi mumbai | mean developer      | 28000 |
-|   9 | priya    |    889558 | mumbai      | mear developer      | 27000 |
+|   9 | priya    |    889558 | mumbai      | mern developer      | 27000 |
 +-----+----------+-----------+-------------+---------------------+-------+
 8 rows in set (0.00 sec)
 
@@ -260,7 +260,7 @@ mysql> select distinct course from students;
 | web development     |
 | backend development |
 | mean developer      |
-| mear developer      |
+| mern developer      |
 +---------------------+
 8 rows in set (0.00 sec)
 
@@ -355,7 +355,7 @@ mysql> select lcase(course) from students;
 | web development     |
 | backend development |
 | mean developer      |
-| mear developer      |
+| mern developer      |
 +---------------------+
 8 rows in set (0.00 sec)
 
@@ -389,7 +389,7 @@ mysql> select * from view;
 |   5 | suresh   |    758966 | delhi       | web development     | 25000 |
 |   6 | manav    |    786698 | hydrabad    | backend development | 36000 |
 |   8 | kriti    |    778895 | navi mumbai | mean developer      | 28000 |
-|   9 | priya    |    889558 | mumbai      | mear developer      | 27000 |
+|   9 | priya    |    889558 | mumbai      | mern developer      | 27000 |
 +-----+----------+-----------+-------------+---------------------+-------+
 8 rows in set (0.00 sec)
 
